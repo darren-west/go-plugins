@@ -1,5 +1,5 @@
 package nats
-
+//TODO: add more tests
 import (
 	"testing"
 
