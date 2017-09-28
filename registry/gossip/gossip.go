@@ -43,6 +43,8 @@ type gossipRegistry struct {
 
 	s    sync.RWMutex
 	subs map[string]chan *registry.Result
+
+	opts registry.Options
 }
 
 type update struct {
@@ -427,6 +429,10 @@ func (m *gossipRegistry) String() string {
 	return "gossip"
 }
 
+func (m *gossipRegistry) Options() registry.Options {
+	return m.opts
+}
+
 func NewRegistry(opts ...registry.Option) registry.Registry {
 	var options registry.Options
 	for _, o := range opts {
@@ -455,6 +461,7 @@ func NewRegistry(opts ...registry.Option) registry.Registry {
 		services:   make(map[string][]*registry.Service),
 		updates:    updates,
 		subs:       make(map[string]chan *registry.Result),
+		opts:       options,
 	}
 
 	go mr.run()

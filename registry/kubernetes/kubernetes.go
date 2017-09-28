@@ -19,6 +19,7 @@ import (
 type kregistry struct {
 	client  client.Kubernetes
 	timeout time.Duration
+	opts    registry.Options
 }
 
 var (
@@ -229,6 +230,10 @@ func (c *kregistry) String() string {
 	return "kubernetes"
 }
 
+func (c *kregistry) Options() registry.Options {
+	return c.opts
+}
+
 // NewRegistry creates a kubernetes registry
 func NewRegistry(opts ...registry.Option) registry.Registry {
 
@@ -258,5 +263,6 @@ func NewRegistry(opts ...registry.Option) registry.Registry {
 	return &kregistry{
 		client:  c,
 		timeout: options.Timeout,
+		opts:    options,
 	}
 }

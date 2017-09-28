@@ -335,6 +335,10 @@ func (n *natsRegistry) String() string {
 	return "nats"
 }
 
+func (n *natsRegistry) Options() registry.Options {
+	return n.opts
+}
+
 func NewRegistry(opts ...registry.Option) registry.Registry {
 	options := registry.Options{
 		Timeout: DefaultTimeout,

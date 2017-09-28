@@ -186,6 +186,10 @@ func (e *etcdRegistry) String() string {
 	return "etcd"
 }
 
+func (e *etcdRegistry) Options() registry.Options {
+	return e.options
+}
+
 func NewRegistry(opts ...registry.Option) registry.Registry {
 	config := etcd.Config{
 		Endpoints: []string{"http://127.0.0.1:2379"},

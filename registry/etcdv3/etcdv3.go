@@ -235,6 +235,10 @@ func (e *etcdv3Registry) String() string {
 	return "etcdv3"
 }
 
+func (e *etcdv3Registry) Options() registry.Options {
+	return e.options
+}
+
 func NewRegistry(opts ...registry.Option) registry.Registry {
 	config := clientv3.Config{
 		Endpoints: []string{"127.0.0.1:2379"},

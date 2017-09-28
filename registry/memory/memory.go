@@ -15,6 +15,7 @@ type memoryRegistry struct {
 	sync.RWMutex
 	services map[string][]*registry.Service
 	watchers map[string]*memoryWatcher
+	opts     registry.Options
 }
 
 var (
@@ -107,6 +108,10 @@ func (m *memoryRegistry) String() string {
 	return "memory"
 }
 
+func (m *memoryRegistry) Options() registry.Options {
+	return m.opts
+}
+
 func NewRegistry(opts ...registry.Option) registry.Registry {
 	options := registry.Options{
 		Context: context.Background(),
@@ -124,5 +129,6 @@ func NewRegistry(opts ...registry.Option) registry.Registry {
 	return &memoryRegistry{
 		services: services,
 		watchers: make(map[string]*memoryWatcher),
+		opts:     options,
 	}
 }

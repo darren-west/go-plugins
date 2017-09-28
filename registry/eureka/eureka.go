@@ -123,6 +123,10 @@ func (e *eurekaRegistry) String() string {
 	return "eureka"
 }
 
+func (e *eurekaRegistry) Options() registry.Options {
+	return e.opts
+}
+
 func (e *eurekaRegistry) instanceRegistered(instance *fargo.Instance) bool {
 	_, err := e.conn.GetInstance(instance.App, instance.UniqueID(*instance))
 	return err == nil

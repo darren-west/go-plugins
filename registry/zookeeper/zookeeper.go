@@ -220,6 +220,10 @@ func (z *zookeeperRegistry) Watch() (registry.Watcher, error) {
 	return newZookeeperWatcher(z)
 }
 
+func (z *zookeeperRegistry) Options() registry.Options {
+	return z.options
+}
+
 func NewRegistry(opts ...registry.Option) registry.Registry {
 	var options registry.Options
 	for _, o := range opts {
